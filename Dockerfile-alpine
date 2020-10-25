@@ -1,5 +1,5 @@
-FROM alpine:latest
-MAINTAINER Adrian Dvergsdal [atmoz.net]
+FROM openjdk:8-jdk-alpine3.9
+MAINTAINER Akihiro Tanaka
 
 # Steps done in one RUN layer:
 # - Install packages
@@ -16,6 +16,6 @@ COPY files/sshd_config /etc/ssh/sshd_config
 COPY files/create-sftp-user /usr/local/bin/
 COPY files/entrypoint /
 
-EXPOSE 22
+RUN /entrypoint user:pass:::upload
 
-ENTRYPOINT ["/entrypoint"]
+EXPOSE 22
